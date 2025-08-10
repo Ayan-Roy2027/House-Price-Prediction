@@ -39,29 +39,30 @@ with st.form("input_form"):
 
     submitted = st.form_submit_button("Predict Price")
 
-
-input_df = pd.DataFrame({
-        "number of bedrooms": [bedrooms],
-        "number of bathrooms": [bathrooms],
-        "living area": [living_area],
-        "lot area": [lot_area],
-        "number of floors": [floors],
-        "waterfront present": [waterfront],
-        "number of views": [views],
-        "condition of the house": [condition],
-        "grade of the house": [grade],
-        "Area of the house(excluding basement)": [area_excl_basement],
-        "Area of the basement": [basement_area],
-        "Built Year": [built_year],
-        "Renovation Year": [renov_year],
-        "Lattitude": [latitude],
-        "Longitude": [longitude],
-        "living_area_renov": [living_area_renov],
-        "lot_area_renov": [lot_area_renov],
-        "Number of schools nearby": [schools_nearby],
-        "Distance from the airport": [distance_airport]
-    })
-input_scaled = scaler.transform(input_df)
-prediction = model.predict(input_scaled)[0]
-
-st.success(f"Predicted Price: Rs. {prediction[0]:.2f}")
+if submitted:
+        input_df = pd.DataFrame({
+                "number of bedrooms": [bedrooms],
+                "number of bathrooms": [bathrooms],
+                "living area": [living_area],
+                "lot area": [lot_area],
+                "number of floors": [floors],
+                "waterfront present": [waterfront],
+                "number of views": [views],
+                "condition of the house": [condition],
+                "grade of the house": [grade],
+                "Area of the house(excluding basement)": [area_excl_basement],
+                "Area of the basement": [basement_area],
+                "Built Year": [built_year],
+                "Renovation Year": [renov_year],
+                "Lattitude": [latitude],
+                "Longitude": [longitude],
+                "living_area_renov": [living_area_renov],
+                "lot_area_renov": [lot_area_renov],
+                "Number of schools nearby": [schools_nearby],
+                "Distance from the airport": [distance_airport]
+            })
+        input_scaled = scaler.transform(input_df)
+        prediction = model.predict(input_scaled)[0]
+        
+        
+        st.success(f"Predicted Price: Rs. {prediction[0]:.2f}")
